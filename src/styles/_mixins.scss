@@ -1,0 +1,85 @@
+// ==========================================================================
+// HIGH YA ! — SCSS Mixins
+// ==========================================================================
+
+// Responsive Breakpoints
+@mixin mobile {
+  @media (max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: 768px) and (max-width: 1023px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: 1024px) {
+    @content;
+  }
+}
+
+// Glassmorphism Surface
+@mixin glass-panel($bg: var(--hy-glass-bg), $blur: var(--hy-glass-blur), $border: var(--hy-glass-border)) {
+  background: $bg;
+  backdrop-filter: $blur;
+  -webkit-backdrop-filter: $blur;
+  border: $border;
+}
+
+// Flex Centering
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Flex Between
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// Chrome Text Effect (Streetwear Avant-Garde)
+@mixin chrome-text {
+  background: linear-gradient(135deg, #ffffff 0%, #b8c1ec 45%, #ffffff 55%, #8892b0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+// Flame / Sauvage Text Effect
+@mixin flame-text {
+  background: linear-gradient(135deg, #ff9e00 0%, #ff0055 50%, #ff5722 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 12px rgba(255, 87, 34, 0.45));
+}
+
+// Truncate Text
+@mixin text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Custom Scrollbar
+@mixin custom-scrollbar {
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    background: rgba(10, 12, 16, 0.6);
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.16);
+    border-radius: 999px;
+    &:hover {
+      background: rgba(255, 255, 255, 0.32);
+    }
+  }
+}

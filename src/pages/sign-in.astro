@@ -1,0 +1,21 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { SignIn } from '@clerk/astro/components';
+---
+
+<Layout title="Connexion — HIGH YA !" description="Accédez à votre compte HIGH YA ! ou rejoignez le Club VIP.">
+  <section style="min-height: 70vh; display: flex; align-items: center; justify-content: center; padding: 4rem 1rem;">
+    <div style="background: rgba(14, 18, 25, 0.9); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 2rem; box-shadow: 0 20px 50px rgba(0,0,0,0.8);">
+      <div style="text-align: center; margin-bottom: 1.5rem;">
+        <h2 style="font-size: 1.8rem; font-weight: 900; text-transform: uppercase; color: #fff;">
+          HIGH <span style="color: var(--hy-color-gold);">YA !</span>
+        </h2>
+        <p style="font-size: 0.85rem; color: var(--hy-color-muted); margin-top: 4px;">
+          Espace Membres VIP & Collaborateurs
+        </p>
+      </div>
+
+      <SignIn routing="path" path="/sign-in" signUpUrl="/sign-up" />
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,109 @@
+---
+import AdminLayout from '../../layouts/AdminLayout.astro';
+---
+
+<AdminLayout title="Tableau de Bord — HIGH YA ! Admin" activeTab="overview">
+  <div class="c-admin__content">
+    <!-- Top Stat Cards -->
+    <div class="c-admin__stats-grid">
+      <div class="c-admin__stat-card">
+        <span class="c-admin__stat-card-label">Chiffre d'Affaires Total</span>
+        <span class="c-admin__stat-card-val" id="admin-kpi-revenue">1 485 000 FCFA</span>
+        <span class="c-admin__stat-card-sub">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+            <polyline points="17 6 23 6 23 12"/>
+          </svg>
+          +34% ce mois-ci
+        </span>
+      </div>
+
+      <div class="c-admin__stat-card">
+        <span class="c-admin__stat-card-label">Commandes Wave Validées</span>
+        <span class="c-admin__stat-card-val" id="admin-kpi-wave-orders">87</span>
+        <span class="c-admin__stat-card-sub" style="color: #4ac7ff;">
+          100% sans frais
+        </span>
+      </div>
+
+      <div class="c-admin__stat-card">
+        <span class="c-admin__stat-card-label">Membres VIP Actifs</span>
+        <span class="c-admin__stat-card-val">142</span>
+        <span class="c-admin__stat-card-sub" style="color: var(--hy-color-gold);">
+          Tarif -20% actif
+        </span>
+      </div>
+
+      <div class="c-admin__stat-card">
+        <span class="c-admin__stat-card-label">Édition n°1 des Ventes</span>
+        <span class="c-admin__stat-card-val" style="font-size: 1.3rem;">Sauvage Bronze</span>
+        <span class="c-admin__stat-card-sub">
+          58% des volumes
+        </span>
+      </div>
+    </div>
+
+    <!-- Live Recent Orders Table -->
+    <div class="c-admin__card">
+      <div class="c-admin__card-header">
+        <h3 class="c-admin__card-title">Dernières Commandes Clients (Wave & Direct)</h3>
+        <a href="/admin/orders" class="c-product-card__btn-details" style="padding: 0.4rem 0.8rem; font-size: 0.75rem;">
+          Toutes les commandes →
+        </a>
+      </div>
+
+      <div class="c-admin__table-wrapper">
+        <table class="c-admin__table">
+          <thead>
+            <tr>
+              <th>Réf. Commande</th>
+              <th>Client</th>
+              <th>Téléphone</th>
+              <th>Méthode</th>
+              <th>Montant</th>
+              <th>Statut</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody id="admin-recent-orders-body">
+            <!-- Populated via script from stored orders -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</AdminLayout>
+
+<script>
+  import { getStoredOrders } from '../../scripts/checkout';
+  import { formatPrice } from '../../scripts/currency';
+
+  function loadRecentOrders() {
+    const orders = getStoredOrders();
+    const tbody = document.getElementById('admin-recent-orders-body');
+    if (!tbody) return;
+
+    tbody.innerHTML = orders.slice(0, 5).map(o => `
+      <tr>
+        <td style="font-weight: 800; font-family: var(--hy-font-mono); color: var(--hy-color-gold);">${o.id}</td>
+        <td style="font-weight: 700;">${o.customerName}</td>
+        <td>${o.phone}</td>
+        <td>
+          <span class="c-badge c-badge--${o.paymentMethod === 'wave' ? 'wave' : 'public'}">
+            ${o.paymentMethod.toUpperCase()}
+          </span>
+        </td>
+        <td style="font-weight: 800;">${formatPrice(o.totalXOF)}</td>
+        <td>
+          <span class="c-badge c-badge--${o.status === 'Payé via Wave' ? 'wave' : o.status === 'Livré' ? 'vendeur' : 'public'}">
+            ${o.status}
+          </span>
+        </td>
+        <td style="color: var(--hy-color-muted);">${o.createdAt}</td>
+      </tr>
+    `).join('');
+  }
+
+  document.addEventListener('DOMContentLoaded', loadRecentOrders);
+  window.addEventListener('hy:order-created', loadRecentOrders);
+</script>

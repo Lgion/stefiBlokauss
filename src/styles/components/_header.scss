@@ -1,0 +1,194 @@
+// ==========================================================================
+// HIGH YA ! — Component: Header (BEM)
+// ==========================================================================
+
+@use "../variables" as *;
+@use "../mixins" as *;
+
+
+.c-header {
+  position: sticky;
+  top: 0;
+  z-index: var(--hy-z-header);
+  width: 100%;
+  @include glass-panel(rgba(8, 10, 14, 0.85), blur(20px), 1px solid rgba(255, 255, 255, 0.08));
+  transition: all var(--hy-transition-normal);
+
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+  }
+
+  &__brand {
+    display: flex;
+    align-items: center;
+    gap: var(--hy-space-sm);
+    text-decoration: none;
+  }
+
+  &__logo {
+    font-size: 1.6rem;
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+
+    &-accent {
+      color: var(--hy-color-gold);
+      text-shadow: 0 0 15px var(--hy-color-gold-glow);
+    }
+  }
+
+  &__slogan {
+    display: none;
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--hy-color-muted);
+    border-left: 1px solid var(--hy-color-border);
+    padding-left: var(--hy-space-sm);
+
+    @include desktop {
+      display: inline-block;
+    }
+  }
+
+  &__nav {
+    display: none;
+
+    @include tablet {
+      display: flex;
+      align-items: center;
+      gap: var(--hy-space-lg);
+    }
+  }
+
+  &__link {
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--hy-color-muted);
+    transition: color var(--hy-transition-fast);
+    position: relative;
+
+    &:hover, &--active {
+      color: #ffffff;
+    }
+
+    &--vip {
+      color: var(--hy-color-gold-bright);
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+
+      &:hover {
+        color: #ffffff;
+        text-shadow: 0 0 10px var(--hy-color-gold);
+      }
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--hy-space-sm);
+
+    @include tablet {
+      gap: var(--hy-space-md);
+    }
+  }
+
+  &__currency-badge {
+    font-size: 0.75rem;
+    font-weight: 800;
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--hy-radius-sm);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--hy-color-border);
+    color: var(--hy-color-light);
+  }
+
+  &__cart-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: var(--hy-radius-md);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--hy-color-border);
+    color: #ffffff;
+    transition: all var(--hy-transition-fast);
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.3);
+      transform: translateY(-1px);
+    }
+
+    &-count {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      background: var(--hy-color-gold);
+      color: #000000;
+      font-size: 0.7rem;
+      font-weight: 900;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 10px var(--hy-color-gold-glow);
+    }
+  }
+
+  &__admin-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 0.85rem;
+    border-radius: var(--hy-radius-md);
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background: rgba(255, 23, 68, 0.15);
+    border: 1px solid rgba(255, 23, 68, 0.4);
+    color: #ff5277;
+    transition: all var(--hy-transition-fast);
+
+    &:hover {
+      background: rgba(255, 23, 68, 0.25);
+      border-color: #ff1744;
+      transform: translateY(-1px);
+    }
+  }
+
+  &__auth-btn {
+    padding: 0.5rem 1rem;
+    border-radius: var(--hy-radius-md);
+    font-size: 0.85rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background: #ffffff;
+    color: #000000;
+    transition: all var(--hy-transition-fast);
+
+    &:hover {
+      background: var(--hy-color-gold);
+      box-shadow: 0 0 20px var(--hy-color-gold-glow);
+      transform: translateY(-1px);
+    }
+  }
+}

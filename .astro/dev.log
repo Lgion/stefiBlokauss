@@ -1,0 +1,56 @@
+{"message":"Enabling sessions with filesystem storage","label":"@astrojs/node","level":"info"}
+{"message":"connected.","label":"vite","level":"info"}
+{"message":"Generated 2ms","label":"types","level":"info"}
+{"message":"connected.","label":"vite","level":"info"}
+{"message":"Re-optimizing dependencies because vite config has changed","label":"vite","level":"info"}
+{"message":" astro  v7.3.7 ready in 945 ms\n┃ Local    http://localhost:4321/\n┃ Network  http://192.168.1.19:4321/","label":"SKIP_FORMAT","level":"info"}
+{"message":"watching for file changes...","label":null,"level":"info"}
+Attention: Clerk collects telemetry data from its SDKs when connected to development instances.
+The data collected is used to inform Clerk's product roadmap.
+To learn more, including how to opt-out from the telemetry program, visit: https://clerk.com/docs/telemetry.
+
+{"message":"[200] / 497ms","label":null,"level":"info"}
+{"message":"[optimizer] bundling dependencies...","label":"vite","level":"info"}
+{"message":"dependency optimized: @clerk/astro/internal","label":"vite","level":"info"}
+{"message":"optimized dependencies changed. reloading","label":"vite","level":"info"}
+{"message":"[200] / 226ms","label":null,"level":"info"}
+{"message":"[console.warn] Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview","label":"vite","level":"warn"}
+{"message":"[302] /admin 13ms","label":null,"level":"info"}
+{"message":"[200] / 164ms","label":null,"level":"info"}
+{"message":"[console.warn] Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview","label":"vite","level":"warn"}
+{"message":"[200] / 148ms","label":null,"level":"info"}
+{"message":"[console.warn] Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview","label":"vite","level":"warn"}
+{"message":"[200] /admin 238ms","label":null,"level":"info"}
+{"message":"[console.warn] Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview","label":"vite","level":"warn"}
+{"message":"[200] /admin/settings 102ms","label":null,"level":"info"}
+{"message":"[console.warn] Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview","label":"vite","level":"warn"}
+{"message":"[200] /admin/orders 322ms","label":null,"level":"info"}
+{"message":"[console.warn] Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview","label":"vite","level":"warn"}
+{"message":"[200] /admin 12ms","label":null,"level":"info"}
+{"message":"[console.warn] Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview","label":"vite","level":"warn"}
+{"message":"[200] /admin 17ms","label":null,"level":"info"}
+{"message":"[console.warn] Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview","label":"vite","level":"warn"}
+{"message":"[200] /admin 8ms","label":null,"level":"info"}
+{"message":"[console.warn] Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview","label":"vite","level":"warn"}
+{"message":"[200] / 24ms","label":null,"level":"info"}
+{"message":"[console.warn] Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview","label":"vite","level":"warn"}
+{"message":"[200] / 40ms","label":null,"level":"info"}
+{"message":"[console.warn] Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview","label":"vite","level":"warn"}
+{"message":"Configuration file updated. Restarting...","label":null,"level":"info"}
+{"message":"Enabling sessions with filesystem storage","label":"@astrojs/node","level":"info"}
+{"message":"connected.","label":"vite","level":"info"}
+{"message":"connected.","label":"vite","level":"info"}
+{"message":"server restarted.","label":"vite","level":"info"}
+{"message":"[200] / 513ms","label":null,"level":"info"}
+{"message":"[console.warn] Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview","label":"vite","level":"warn"}
+{"message":"/src/styles/main.scss","label":"watch","level":"info"}
+{"message":"[200] / 58ms","label":null,"level":"info"}
+{"message":"[console.warn] Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview","label":"vite","level":"warn"}
+{"message":"[200] /admin 144ms","label":null,"level":"info"}
+{"message":"[console.warn] Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview","label":"vite","level":"warn"}
+{"message":"[200] / 22ms","label":null,"level":"info"}
+{"message":"[console.warn] Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview","label":"vite","level":"warn"}
+{"message":"[200] / 82ms","label":null,"level":"info"}
+{"message":"[console.warn] Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview","label":"vite","level":"warn"}
+{"message":"[200] / 26ms","label":null,"level":"info"}
+{"message":"[console.warn] Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview","label":"vite","level":"warn"}

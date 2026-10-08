@@ -1,0 +1,136 @@
+---
+import AdminLayout from '../../layouts/AdminLayout.astro';
+---
+
+<AdminLayout title="Gestion des Commandes — HIGH YA ! Admin" activeTab="orders">
+  <div class="c-admin__content">
+    <div class="c-admin__card">
+      <div class="c-admin__card-header">
+        <div>
+          <h2 class="c-admin__card-title">Suivi des Commandes & Encaissements Wave</h2>
+          <p style="font-size: 0.8rem; color: var(--hy-color-muted); margin-top: 2px;">
+            Espace accessible aux rôles <strong>Super Admin</strong> et <strong>Vendeurs</strong>. Mettez à jour les statuts en direct.
+          </p>
+        </div>
+
+        <div style="display: flex; gap: 0.5rem; align-items: center;">
+          <button class="c-badge c-badge--public" id="filter-all-orders" style="cursor: pointer;">Tous</button>
+          <button class="c-badge c-badge--wave" id="filter-wave-orders" style="cursor: pointer;">Wave Uniquement</button>
+        </div>
+      </div>
+
+      <div class="c-admin__table-wrapper">
+        <table class="c-admin__table">
+          <thead>
+            <tr>
+              <th>Réf.</th>
+              <th>Client & Contact</th>
+              <th>Adresse de Livraison</th>
+              <th>Articles Commandés</th>
+              <th>Mode & Montant</th>
+              <th>Statut Actuel</th>
+              <th>Actions Vendeur</th>
+            </tr>
+          </thead>
+          <tbody id="orders-table-body">
+            <!-- Populated via script -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</AdminLayout>
+
+<script>
+  import { getStoredOrders, updateOrderStatus, type OrderData } from '../../scripts/checkout';
+  import { formatPrice } from '../../scripts/currency';
+
+  function renderOrders(filter: string = 'all') {
+    let orders = getStoredOrders();
+    if (filter === 'wave') {
+      orders = orders.filter(o => o.paymentMethod === 'wave');
+    }
+
+    const tbody = document.getElementById('orders-table-body');
+    if (!tbody) return;
+
+    if (orders.length === 0) {
+      tbody.innerHTML = `
+        <tr>
+          <td colspan="7" style="text-align: center; padding: 2rem; color: var(--hy-color-muted);">
+            Aucune commande enregistrée pour l'instant.
+          </td>
+        </tr>
+      `;
+      return;
+    }
+
+    tbody.innerHTML = orders.map(o => {
+      const itemsList = o.items.map(i => `${i.quantity}x ${i.productName} (${i.format === 'carton' ? 'Cartouche' : 'Paquet'})`).join('<br/>');
+
+      return `
+        <tr>
+          <td style="font-family: var(--hy-font-mono); font-weight: 800; color: var(--hy-color-gold);">${o.id}</td>
+          <td>
+            <div style="font-weight: 800; color: #fff;">${o.customerName}</div>
+            <div style="font-size: 0.75rem; color: var(--hy-color-muted);">${o.phone}</div>
+            <div style="font-size: 0.75rem; color: var(--hy-color-muted);">${o.email}</div>
+          </td>
+          <td>
+            <div style="font-weight: 700;">${o.city}</div>
+            <div style="font-size: 0.75rem; color: var(--hy-color-muted);">${o.address}</div>
+          </td>
+          <td style="font-size: 0.8rem; line-height: 1.4;">
+            ${itemsList}
+          </td>
+          <td>
+            <div style="font-weight: 800; color: #fff;">${formatPrice(o.totalXOF)}</div>
+            <span class="c-badge c-badge--${o.paymentMethod === 'wave' ? 'wave' : 'public'}" style="margin-top: 4px;">
+              ${o.paymentMethod.toUpperCase()}
+            </span>
+          </td>
+          <td>
+            <span class="c-badge c-badge--${o.status === 'Payé via Wave' ? 'wave' : o.status === 'Livré' ? 'vendeur' : 'public'}">
+              ${o.status}
+            </span>
+          </td>
+          <td>
+            <div style="display: flex; gap: 0.35rem; flex-wrap: wrap;">
+              ${o.status !== 'Expédié' && o.status !== 'Livré' ? `
+                <button class="c-admin__status-btn action-ship-btn" data-id="${o.id}">
+                  Expédier
+                </button>
+              ` : ''}
+              ${o.status !== 'Livré' ? `
+                <button class="c-admin__status-btn action-deliver-btn" data-id="${o.id}" style="background: rgba(0,255,135,0.15); color: var(--hy-color-acid);">
+                  Livré ✓
+                </button>
+              ` : '<span style="font-size: 0.75rem; color: var(--hy-color-acid); font-weight: 800;">Terminé</span>'}
+            </div>
+          </td>
+        </tr>
+      `;
+    }).join('');
+
+    // Attach actions
+    document.querySelectorAll('.action-ship-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.getAttribute('data-id')!;
+        updateOrderStatus(id, 'Expédié');
+        renderOrders(filter);
+      });
+    });
+
+    document.querySelectorAll('.action-deliver-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.getAttribute('data-id')!;
+        updateOrderStatus(id, 'Livré');
+        renderOrders(filter);
+      });
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => renderOrders('all'));
+  document.getElementById('filter-all-orders')?.addEventListener('click', () => renderOrders('all'));
+  document.getElementById('filter-wave-orders')?.addEventListener('click', () => renderOrders('wave'));
+</script>

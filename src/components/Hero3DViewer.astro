@@ -1,0 +1,212 @@
+---
+---
+
+<section class="c-hero" id="viewer">
+  <div class="l-container">
+    <div class="c-hero__grid">
+      <!-- Left Hero Content Column -->
+      <div class="c-hero__content">
+        <div class="c-hero__tagline-wrapper">
+          <span class="c-hero__tagline">Nouvelle Génération</span>
+          <span class="c-badge c-badge--wave">Compatible Wave</span>
+          <span class="c-badge c-badge--vip">Club VIP Ouvert</span>
+        </div>
+
+        <h1 class="c-hero__title">
+          HIGH YA !
+          <span class="c-hero__title-accent">Énergie Sauvage</span>
+        </h1>
+
+        <p class="c-hero__description">
+          Découvrez la première cigarette de rupture au design <strong>Streetwear Avant-Garde</strong>. 
+          Boîtier texturé haute précision, clapet biseauté articulé, filtres or & platine à triple charbon actif et tabac pur grand cru.
+        </p>
+
+        <div class="c-hero__cta-group">
+          <button class="c-hero__cta-primary" id="hero-order-now-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+              <line x1="3" y1="6" x2="21" y2="6"/>
+              <path d="M16 10a4 4 0 0 1-8 0"/>
+            </svg>
+            <span>Commander via Wave</span>
+          </button>
+
+          <a href="#editions" class="c-hero__cta-secondary">
+            <span>Explorer les Éditions</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="5" y1="12" x2="19" y2="12"/>
+              <polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </a>
+        </div>
+
+        <div class="c-hero__trust-badges">
+          <div class="c-hero__trust-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
+              <line x1="1" y1="10" x2="23" y2="10"/>
+            </svg>
+            <span>Paiement Wave Sécurisé</span>
+          </div>
+
+          <div class="c-hero__trust-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+            <span>Filtre Triple Charbon</span>
+          </div>
+
+          <div class="c-hero__trust-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </svg>
+            <span>Tarif VIP Exclusif</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: 3D Interactive Cigarette Pack Viewer -->
+      <div class="c-hero__viewer-col">
+        <div class="c-viewer3d" id="pack-viewer-container">
+          <!-- Top HUD Overlay -->
+          <div class="c-viewer3d__topbar">
+            <div class="c-viewer3d__status-pill">
+              <span class="c-viewer3d__status-pill-dot"></span>
+              <span id="viewer-edition-label">Sauvage Bronze</span>
+            </div>
+
+            <button class="c-viewer3d__rotate-toggle c-viewer3d__rotate-toggle--active" id="viewer-autorotate-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
+              </svg>
+              <span>360° Auto</span>
+            </button>
+          </div>
+
+          <!-- Interactive Action Buttons -->
+          <div class="c-viewer3d__actions">
+            <button class="c-viewer3d__action-btn" id="viewer-toggle-lid-btn" title="Ouvrir ou fermer le paquet">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 15l-6-6-6 6"/>
+              </svg>
+              <span id="viewer-lid-text">Ouvrir</span>
+            </button>
+
+            <button class="c-viewer3d__action-btn" id="viewer-extract-cig-btn" title="Extraire une cigarette">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="19" x2="12" y2="5"/>
+                <polyline points="5 12 12 5 19 12"/>
+              </svg>
+              <span>Sortir Cigarette</span>
+            </button>
+
+            <button class="c-viewer3d__action-btn" id="viewer-reset-cam-btn" title="Recentrer la vue">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+              <span>Recentrer</span>
+            </button>
+          </div>
+
+          <!-- Bottom Variant Swatches Toolbar -->
+          <div class="c-viewer3d__bottombar">
+            <div class="c-viewer3d__variants">
+              <button class="c-viewer3d__variant-btn c-viewer3d__variant-btn--active" data-theme="bronze">
+                <span class="c-viewer3d__variant-btn-swatch c-viewer3d__variant-btn-swatch--bronze"></span>
+                <span>Bronze Wild</span>
+              </button>
+
+              <button class="c-viewer3d__variant-btn" data-theme="cobalt">
+                <span class="c-viewer3d__variant-btn-swatch c-viewer3d__variant-btn-swatch--cobalt"></span>
+                <span>Cyber Cobalt</span>
+              </button>
+
+              <button class="c-viewer3d__variant-btn" data-theme="emerald">
+                <span class="c-viewer3d__variant-btn-swatch c-viewer3d__variant-btn-swatch--emerald"></span>
+                <span>Hexa Emerald</span>
+              </button>
+
+              <button class="c-viewer3d__variant-btn" data-theme="onyx">
+                <span class="c-viewer3d__variant-btn-swatch c-viewer3d__variant-btn-swatch--onyx"></span>
+                <span>Onyx VIP</span>
+              </button>
+            </div>
+
+            <span class="c-viewer3d__hint">Glissez pour tourner à 360° • Molette pour zoomer • Cliquez pour ouvrir</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { PackViewer3D, VIEWER_THEMES } from '../scripts/viewer3d';
+
+  let viewer: PackViewer3D | null = null;
+  const container = document.getElementById('pack-viewer-container');
+
+  if (container) {
+    viewer = new PackViewer3D(container);
+
+    // Open/Close Lid Button
+    const lidBtn = document.getElementById('viewer-toggle-lid-btn');
+    const lidText = document.getElementById('viewer-lid-text');
+    lidBtn?.addEventListener('click', () => {
+      if (!viewer) return;
+      const isOpen = viewer.toggleOpen();
+      if (lidText) lidText.textContent = isOpen ? 'Fermer' : 'Ouvrir';
+      lidBtn.classList.toggle('c-viewer3d__action-btn--active', isOpen);
+    });
+
+    // Extract Cigarette Button
+    const extractBtn = document.getElementById('viewer-extract-cig-btn');
+    extractBtn?.addEventListener('click', () => {
+      if (!viewer) return;
+      const isExtracted = viewer.toggleExtractCigarette();
+      extractBtn.classList.toggle('c-viewer3d__action-btn--active', isExtracted);
+      if (lidText) lidText.textContent = 'Fermer';
+      lidBtn?.classList.add('c-viewer3d__action-btn--active');
+    });
+
+    // Reset Camera
+    document.getElementById('viewer-reset-cam-btn')?.addEventListener('click', () => {
+      viewer?.resetCamera();
+    });
+
+    // Auto-Rotate Button
+    const rotateBtn = document.getElementById('viewer-autorotate-btn');
+    rotateBtn?.addEventListener('click', () => {
+      if (!viewer) return;
+      const isRotating = viewer.toggleAutoRotate();
+      rotateBtn.classList.toggle('c-viewer3d__rotate-toggle--active', isRotating);
+    });
+
+    // Variant Swatches
+    const variantBtns = document.querySelectorAll('.c-viewer3d__variant-btn');
+    const editionLabel = document.getElementById('viewer-edition-label');
+
+    variantBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const themeId = btn.getAttribute('data-theme') || 'bronze';
+        viewer?.applyTheme(themeId);
+
+        variantBtns.forEach(b => b.classList.remove('c-viewer3d__variant-btn--active'));
+        btn.classList.add('c-viewer3d__variant-btn--active');
+
+        if (editionLabel && VIEWER_THEMES[themeId]) {
+          editionLabel.textContent = VIEWER_THEMES[themeId].name;
+        }
+
+        window.dispatchEvent(new CustomEvent('hy:theme-selected', { detail: { themeId } }));
+      });
+    });
+  }
+
+  // Hero order button triggers quick checkout
+  document.getElementById('hero-order-now-btn')?.addEventListener('click', () => {
+    window.dispatchEvent(new CustomEvent('hy:open-checkout'));
+  });
+</script>

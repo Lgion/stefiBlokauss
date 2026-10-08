@@ -1,0 +1,107 @@
+---
+import { Show, SignInButton, UserButton } from '@clerk/astro/components';
+
+interface Props {
+  currentRole?: 'super admin' | 'vendeurs' | 'vip' | 'public';
+}
+
+const { currentRole = 'public' } = Astro.props;
+const isAdminOrVendor = currentRole === 'super admin' || currentRole === 'vendeurs';
+---
+
+<header class="c-header">
+  <div class="l-container c-header__container">
+    <div class="c-header__brand-group">
+      <a href="/" class="c-header__brand">
+        <span class="c-header__logo">
+          HIGH <span class="c-header__logo-accent">YA !</span>
+        </span>
+        <span class="c-header__slogan">Énergie Sauvage</span>
+      </a>
+    </div>
+
+    <nav class="c-header__nav">
+      <a href="#viewer" class="c-header__link">Configurateur 3D</a>
+      <a href="#editions" class="c-header__link">Les Éditions</a>
+      <a href="#story" class="c-header__link">L'Expérience</a>
+      {currentRole === 'vip' && (
+        <a href="#editions" class="c-header__link c-header__link--vip">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+          Avantages VIP (-20%)
+        </a>
+      )}
+      {isAdminOrVendor && (
+        <a href="/admin" class="c-header__link c-header__link--active" style="color: #ff5277;">
+          Espace Admin
+        </a>
+      )}
+    </nav>
+
+    <div class="c-header__actions">
+      <!-- Role Badge -->
+      <span class={`c-badge c-badge--${currentRole === 'super admin' ? 'super-admin' : currentRole === 'vendeurs' ? 'vendeur' : currentRole}`}>
+        {currentRole === 'super admin' ? 'Super Admin' : currentRole === 'vendeurs' ? 'Vendeur' : currentRole === 'vip' ? 'VIP Club' : 'Public'}
+      </span>
+
+      <!-- Active Currency Indicator -->
+      <span class="c-header__currency-badge" id="header-currency-badge">XOF</span>
+
+      <!-- Shopping Cart Button -->
+      <button class="c-header__cart-btn" id="open-cart-btn" aria-label="Ouvrir le panier">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <path d="M16 10a4 4 0 0 1-8 0"/>
+        </svg>
+        <span class="c-header__cart-btn-count" id="header-cart-count">0</span>
+      </button>
+
+      <!-- Admin Direct Link for authorized roles or Sign In -->
+      {isAdminOrVendor ? (
+        <a href="/admin" class="c-header__admin-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7"/>
+            <rect x="14" y="3" width="7" height="7"/>
+            <rect x="14" y="14" width="7" height="7"/>
+            <rect x="3" y="14" width="7" height="7"/>
+          </svg>
+          <span>Dashboard</span>
+        </a>
+      ) : (
+        <Show when="signed-out">
+          <SignInButton mode="modal">
+            <button class="c-header__auth-btn">Connexion</button>
+          </SignInButton>
+        </Show>
+      )}
+
+      <Show when="signed-in">
+        <UserButton />
+      </Show>
+    </div>
+  </div>
+</header>
+
+<script>
+  import { calculateCartTotals } from '../scripts/store';
+  import { getActiveCurrency } from '../scripts/currency';
+
+  function updateHeader() {
+    const totals = calculateCartTotals();
+    const countEl = document.getElementById('header-cart-count');
+    if (countEl) countEl.textContent = totals.totalItemsCount.toString();
+
+    const currencyBadge = document.getElementById('header-currency-badge');
+    if (currencyBadge) currencyBadge.textContent = getActiveCurrency();
+  }
+
+  window.addEventListener('hy:cart-updated', updateHeader);
+  window.addEventListener('hy:currency-changed', updateHeader);
+  document.addEventListener('DOMContentLoaded', updateHeader);
+
+  document.getElementById('open-cart-btn')?.addEventListener('click', () => {
+    window.dispatchEvent(new CustomEvent('hy:open-cart'));
+  });
+</script>

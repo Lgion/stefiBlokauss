@@ -1,0 +1,107 @@
+// ==========================================================================
+// HIGH YA ! — Component: Footer (BEM)
+// ==========================================================================
+
+@use "../variables" as *;
+@use "../mixins" as *;
+
+
+.c-footer {
+  margin-top: auto;
+  border-top: 1px solid var(--hy-color-border);
+  background: rgba(8, 10, 14, 0.95);
+  padding: var(--hy-space-2xl) 0 var(--hy-space-xl) 0;
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--hy-space-xl);
+
+    @include tablet {
+      grid-template-columns: 1.5fr 1fr 1fr;
+    }
+  }
+
+  &__brand {
+    display: flex;
+    flex-direction: column;
+    gap: var(--hy-space-sm);
+  }
+
+  &__logo {
+    font-size: 1.8rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #ffffff;
+  }
+
+  &__tagline {
+    font-size: 0.85rem;
+    color: var(--hy-color-muted);
+    max-width: 320px;
+  }
+
+  &__warning-box {
+    margin-top: var(--hy-space-md);
+    padding: var(--hy-space-sm) var(--hy-space-md);
+    border-radius: var(--hy-radius-sm);
+    background: rgba(255, 23, 68, 0.1);
+    border: 1px solid rgba(255, 23, 68, 0.3);
+    color: #ff5277;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  &__col-title {
+    font-size: 0.85rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #ffffff;
+    margin-bottom: var(--hy-space-md);
+  }
+
+  &__links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--hy-space-xs);
+  }
+
+  &__link {
+    font-size: 0.85rem;
+    color: var(--hy-color-muted);
+    transition: color var(--hy-transition-fast);
+
+    &:hover {
+      color: var(--hy-color-gold-bright);
+    }
+  }
+
+  &__bottom {
+    margin-top: var(--hy-space-2xl);
+    padding-top: var(--hy-space-md);
+    border-top: 1px solid var(--hy-color-border);
+    display: flex;
+    flex-direction: column;
+    gap: var(--hy-space-sm);
+    align-items: center;
+    justify-content: space-between;
+
+    @include tablet {
+      flex-direction: row;
+    }
+  }
+
+  &__copyright {
+    font-size: 0.8rem;
+    color: var(--hy-color-muted);
+  }
+
+  &__payment-badges {
+    display: flex;
+    align-items: center;
+    gap: var(--hy-space-sm);
+  }
+}

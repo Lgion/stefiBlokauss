@@ -1,0 +1,366 @@
+---
+---
+
+<dialog class="c-checkout-modal" id="checkout-funnel-modal">
+  <div class="c-checkout-modal__dialog">
+    <button class="c-checkout-modal__close" id="close-checkout-modal-btn" aria-label="Fermer la commande">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+
+    <!-- Stepper Indicator -->
+    <div class="c-checkout-modal__stepper">
+      <div class="c-checkout-modal__step c-checkout-modal__step--active" id="checkout-step-nav-1">
+        <span class="c-checkout-modal__step-num">1</span>
+        <span class="c-checkout-modal__step-title">Livraison</span>
+      </div>
+      <div class="c-checkout-modal__step" id="checkout-step-nav-2">
+        <span class="c-checkout-modal__step-num">2</span>
+        <span class="c-checkout-modal__step-title">Paiement Wave</span>
+      </div>
+      <div class="c-checkout-modal__step" id="checkout-step-nav-3">
+        <span class="c-checkout-modal__step-num">3</span>
+        <span class="c-checkout-modal__step-title">Confirmation</span>
+      </div>
+    </div>
+
+    <!-- Step 1: Customer Details & Shipping -->
+    <div class="c-checkout-modal__step-content" id="checkout-step-panel-1">
+      <h3 style="font-size: 1.25rem; font-weight: 900; text-transform: uppercase; margin-bottom: var(--hy-space-md); color: #fff;">
+        Coordonnées & Adresse de Livraison
+      </h3>
+
+      <div class="c-checkout-modal__form-grid">
+        <div class="c-checkout-modal__field">
+          <label class="c-checkout-modal__field-label" for="ship-name">Nom Complet *</label>
+          <input type="text" id="ship-name" class="c-checkout-modal__field-input" placeholder="Moussa Ndiaye" required />
+        </div>
+
+        <div class="c-checkout-modal__field">
+          <label class="c-checkout-modal__field-label" for="ship-phone">Téléphone Mobile (Wave / WhatsApp) *</label>
+          <input type="tel" id="ship-phone" class="c-checkout-modal__field-input" placeholder="+221 77 000 00 00" required />
+        </div>
+
+        <div class="c-checkout-modal__field c-checkout-modal__field--full">
+          <label class="c-checkout-modal__field-label" for="ship-email">Email (pour le reçu)</label>
+          <input type="email" id="ship-email" class="c-checkout-modal__field-input" placeholder="moussa@example.com" />
+        </div>
+
+        <div class="c-checkout-modal__field">
+          <label class="c-checkout-modal__field-label" for="ship-country">Pays / Zone</label>
+          <select id="ship-country" class="c-checkout-modal__field-input">
+            <option value="SN">Sénégal (Dakar, Thiès, Mbour)</option>
+            <option value="CI">Côte d'Ivoire (Abidjan, Yamoussoukro)</option>
+            <option value="FR">France / Europe (Paris, Lyon)</option>
+            <option value="INT">International (Livraison express DHL)</option>
+          </select>
+        </div>
+
+        <div class="c-checkout-modal__field">
+          <label class="c-checkout-modal__field-label" for="ship-city">Ville / Quartier *</label>
+          <input type="text" id="ship-city" class="c-checkout-modal__field-input" placeholder="Dakar - Almadies" required />
+        </div>
+
+        <div class="c-checkout-modal__field c-checkout-modal__field--full">
+          <label class="c-checkout-modal__field-label" for="ship-address">Adresse précise ou repère de livraison</label>
+          <input type="text" id="ship-address" class="c-checkout-modal__field-input" placeholder="Rue 12, en face de la pharmacie" />
+        </div>
+      </div>
+
+      <div class="c-checkout-modal__footer-nav">
+        <span></span>
+        <button class="c-checkout-modal__btn-next" id="checkout-goto-step2">
+          <span>Continuer vers le Paiement</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Step 2: Payment Selector (Wave Featured) -->
+    <div class="c-checkout-modal__step-content" id="checkout-step-panel-2" style="display: none;">
+      <h3 style="font-size: 1.25rem; font-weight: 900; text-transform: uppercase; margin-bottom: var(--hy-space-md); color: #fff;">
+        Mode de Paiement Sécurisé
+      </h3>
+
+      <div class="c-checkout-modal__payment-methods">
+        <!-- WAVE FEATURED CARD -->
+        <label class="c-checkout-modal__method-card c-checkout-modal__method-card--wave c-checkout-modal__method-card--active" id="method-card-wave">
+          <input type="radio" name="payment_method" value="wave" checked class="c-checkout-modal__method-card-radio" />
+          <img src="/media/wave-logo.svg" alt="Wave" style="height: 28px; width: auto; border-radius: 4px;" />
+          <div class="c-checkout-modal__method-card-info">
+            <span class="c-checkout-modal__method-card-title">
+              Wave Mobile Money
+              <span class="c-checkout-modal__method-card-badge">Instantané • 0% frais</span>
+            </span>
+            <span class="c-checkout-modal__method-card-desc">
+              Paiement direct en 1 clic par QR Code ou notification push sur votre app Wave.
+            </span>
+          </div>
+        </label>
+
+        <!-- ORANGE MONEY -->
+        <label class="c-checkout-modal__method-card" id="method-card-om">
+          <input type="radio" name="payment_method" value="orange_money" class="c-checkout-modal__method-card-radio" />
+          <div class="c-checkout-modal__method-card-info">
+            <span class="c-checkout-modal__method-card-title">Orange Money</span>
+            <span class="c-checkout-modal__method-card-desc">Code marchand ou validation USSD #144#</span>
+          </div>
+        </label>
+
+        <!-- CARTE BANCAIRE -->
+        <label class="c-checkout-modal__method-card" id="method-card-card">
+          <input type="radio" name="payment_method" value="card" class="c-checkout-modal__method-card-radio" />
+          <div class="c-checkout-modal__method-card-info">
+            <span class="c-checkout-modal__method-card-title">Carte Bancaire (Visa / Mastercard)</span>
+            <span class="c-checkout-modal__method-card-desc">Paiement international sécurisé 3D-Secure</span>
+          </div>
+        </label>
+
+        <!-- PAIEMENT LIVRAISON -->
+        <label class="c-checkout-modal__method-card" id="method-card-cod">
+          <input type="radio" name="payment_method" value="cod" class="c-checkout-modal__method-card-radio" />
+          <div class="c-checkout-modal__method-card-info">
+            <span class="c-checkout-modal__method-card-title">Paiement à la livraison</span>
+            <span class="c-checkout-modal__method-card-desc">Règlement en espèces au coursier à la réception</span>
+          </div>
+        </label>
+      </div>
+
+      <!-- Wave Interactive Box -->
+      <div class="c-checkout-modal__wave-box" id="wave-interactive-box">
+        <div class="c-checkout-modal__wave-qr" id="wave-qr-container">
+          <!-- Dynamic QR code injected here -->
+        </div>
+        <p class="c-checkout-modal__wave-instruction">
+          Scannez ce QR Code avec votre application <strong>Wave</strong> ou confirmez ci-dessous pour déclencher la validation automatique sur le numéro : <br/>
+          <strong id="wave-summary-phone" style="font-size: 1.1rem; color: #4ac7ff;">+221 77 000 00 00</strong>
+        </p>
+
+        <div style="font-size: 1.2rem; font-weight: 900; color: #fff;">
+          Montant à régler : <span id="wave-summary-amount" style="color: var(--hy-color-gold-bright);">0 FCFA</span>
+        </div>
+      </div>
+
+      <div class="c-checkout-modal__footer-nav">
+        <button class="c-checkout-modal__btn-prev" id="checkout-goto-step1">
+          ← Retour
+        </button>
+
+        <button class="c-checkout-modal__btn-wave-pay" id="checkout-confirm-payment-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+            <polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+          <span id="payment-action-text">Valider et Payer avec Wave</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Step 3: Confirmation & Receipt -->
+    <div class="c-checkout-modal__step-content" id="checkout-step-panel-3" style="display: none;">
+      <div class="c-checkout-modal__success-box">
+        <div class="c-checkout-modal__success-icon">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+
+        <h3 style="font-size: 1.8rem; font-weight: 900; text-transform: uppercase; color: #ffffff;">
+          Commande Confirmée !
+        </h3>
+
+        <p style="color: var(--hy-color-muted); max-width: 480px; line-height: 1.5;">
+          Votre paiement a été validé avec succès. Votre colis d’éditions <strong>HIGH YA !</strong> est préparé en priorité par nos équipes.
+        </p>
+
+        <div class="c-checkout-modal__order-ref" id="order-success-reference">
+          #HY-8492
+        </div>
+
+        <div style="display: flex; gap: var(--hy-space-sm); flex-wrap: wrap; margin-top: var(--hy-space-md);">
+          <a href="#" id="order-whatsapp-btn" target="_blank" class="c-floating-contact__btn--whatsapp" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.4rem; border-radius: var(--hy-radius-md); font-weight: 800; text-transform: uppercase; font-size: 0.85rem; color: #fff;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/>
+            </svg>
+            <span>Suivi direct sur WhatsApp</span>
+          </a>
+
+          <button class="c-product-card__btn-details" id="order-close-success-btn">
+            Retour à l'accueil
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<script>
+  import { getCart, clearCart, calculateCartTotals, PRODUCTS } from '../scripts/store';
+  import { formatPrice } from '../scripts/currency';
+  import { saveOrder, generateWaveQRCode, triggerSuccessCelebration, type OrderData } from '../scripts/checkout';
+
+  const modal = document.getElementById('checkout-funnel-modal') as HTMLDialogElement | null;
+  const closeBtn = document.getElementById('close-checkout-modal-btn');
+
+  const panel1 = document.getElementById('checkout-step-panel-1');
+  const panel2 = document.getElementById('checkout-step-panel-2');
+  const panel3 = document.getElementById('checkout-step-panel-3');
+
+  const nav1 = document.getElementById('checkout-step-nav-1');
+  const nav2 = document.getElementById('checkout-step-nav-2');
+  const nav3 = document.getElementById('checkout-step-nav-3');
+
+  let currentStep = 1;
+  let customerDetails = {
+    name: '',
+    phone: '',
+    email: '',
+    country: 'SN',
+    city: '',
+    address: ''
+  };
+
+  function setStep(step: number) {
+    currentStep = step;
+    if (panel1) panel1.style.display = step === 1 ? 'block' : 'none';
+    if (panel2) panel2.style.display = step === 2 ? 'block' : 'none';
+    if (panel3) panel3.style.display = step === 3 ? 'block' : 'none';
+
+    nav1?.classList.toggle('c-checkout-modal__step--active', step === 1);
+    nav1?.classList.toggle('c-checkout-modal__step--completed', step > 1);
+
+    nav2?.classList.toggle('c-checkout-modal__step--active', step === 2);
+    nav2?.classList.toggle('c-checkout-modal__step--completed', step > 2);
+
+    nav3?.classList.toggle('c-checkout-modal__step--active', step === 3);
+  }
+
+  // Go to step 2 (Prepare payment & Wave QR)
+  document.getElementById('checkout-goto-step2')?.addEventListener('click', async () => {
+    const name = (document.getElementById('ship-name') as HTMLInputElement)?.value.trim();
+    const phone = (document.getElementById('ship-phone') as HTMLInputElement)?.value.trim();
+    const email = (document.getElementById('ship-email') as HTMLInputElement)?.value.trim();
+    const country = (document.getElementById('ship-country') as HTMLSelectElement)?.value;
+    const city = (document.getElementById('ship-city') as HTMLInputElement)?.value.trim();
+    const address = (document.getElementById('ship-address') as HTMLInputElement)?.value.trim();
+
+    if (!name || !phone || !city) {
+      alert('Veuillez renseigner votre nom, téléphone et ville de livraison.');
+      return;
+    }
+
+    customerDetails = { name, phone, email, country, city, address };
+
+    const totals = calculateCartTotals();
+    const wavePhoneEl = document.getElementById('wave-summary-phone');
+    const waveAmountEl = document.getElementById('wave-summary-amount');
+    if (wavePhoneEl) wavePhoneEl.textContent = phone;
+    if (waveAmountEl) waveAmountEl.textContent = formatPrice(totals.total);
+
+    // Generate dynamic QR Code for Wave
+    const qrContainer = document.getElementById('wave-qr-container');
+    if (qrContainer) {
+      const qrDataUrl = await generateWaveQRCode(phone, totals.total);
+      qrContainer.innerHTML = `<img src="${qrDataUrl}" alt="QR Code Wave" style="width: 100%; height: 100%; object-fit: contain;" />`;
+    }
+
+    setStep(2);
+  });
+
+  document.getElementById('checkout-goto-step1')?.addEventListener('click', () => setStep(1));
+
+  // Payment method selection cards
+  const methodRadios = document.querySelectorAll('input[name="payment_method"]');
+  methodRadios.forEach(radio => {
+    radio.addEventListener('change', (e: any) => {
+      const selected = e.target.value;
+      document.querySelectorAll('.c-checkout-modal__method-card').forEach(card => card.classList.remove('c-checkout-modal__method-card--active'));
+      const activeCard = document.getElementById(`method-card-${selected === 'orange_money' ? 'om' : selected}`);
+      activeCard?.classList.add('c-checkout-modal__method-card--active');
+
+      const waveBox = document.getElementById('wave-interactive-box');
+      const actionText = document.getElementById('payment-action-text');
+      if (waveBox) waveBox.style.display = selected === 'wave' ? 'flex' : 'none';
+      if (actionText) {
+        actionText.textContent = selected === 'wave'
+          ? 'Valider et Payer avec Wave'
+          : `Confirmer la Commande (${selected.toUpperCase()})`;
+      }
+    });
+  });
+
+  // Confirm Payment
+  document.getElementById('checkout-confirm-payment-btn')?.addEventListener('click', () => {
+    const cart = getCart();
+    const totals = calculateCartTotals();
+    const selectedMethod = (document.querySelector('input[name="payment_method"]:checked') as HTMLInputElement)?.value as any || 'wave';
+
+    const orderId = `HY-${Math.floor(1000 + Math.random() * 9000)}`;
+
+    const newOrder: OrderData = {
+      id: orderId,
+      customerName: customerDetails.name,
+      phone: customerDetails.phone,
+      email: customerDetails.email || 'client@high-ya.com',
+      address: customerDetails.address || customerDetails.city,
+      city: customerDetails.city,
+      paymentMethod: selectedMethod,
+      items: cart.map(item => {
+        const p = PRODUCTS.find(prod => prod.id === item.productId);
+        const price = item.format === 'carton' ? p?.cartonPriceXOF || 0 : p?.priceXOF || 0;
+        return {
+          productId: item.productId,
+          productName: p?.name || 'HIGH YA !',
+          format: item.format,
+          quantity: item.quantity,
+          price
+        };
+      }),
+      totalXOF: totals.total,
+      status: selectedMethod === 'wave' ? 'Payé via Wave' : 'En attente',
+      createdAt: 'À l’instant'
+    };
+
+    saveOrder(newOrder);
+    clearCart();
+
+    // Setup success screen
+    const refEl = document.getElementById('order-success-reference');
+    if (refEl) refEl.textContent = `#${orderId}`;
+
+    const waBtn = document.getElementById('order-whatsapp-btn') as HTMLAnchorElement | null;
+    if (waBtn) {
+      const waMsg = encodeURIComponent(`Bonjour HIGH YA ! Je viens de valider ma commande #${orderId} de ${formatPrice(totals.total)} par ${selectedMethod.toUpperCase()}. Nom: ${customerDetails.name}`);
+      waBtn.href = `https://wa.me/221770000000?text=${waMsg}`;
+    }
+
+    setStep(3);
+    triggerSuccessCelebration();
+  });
+
+  // Open checkout event
+  window.addEventListener('hy:open-checkout', () => {
+    const cart = getCart();
+    if (cart.length === 0) {
+      // Auto-add bronze pack if empty
+      import('../scripts/store').then(({ addToCart }) => {
+        addToCart('bronze', 'pack', 1);
+        setStep(1);
+        modal?.showModal();
+      });
+    } else {
+      setStep(1);
+      modal?.showModal();
+    }
+  });
+
+  closeBtn?.addEventListener('click', () => modal?.close());
+  document.getElementById('order-close-success-btn')?.addEventListener('click', () => modal?.close());
+  modal?.addEventListener('click', (e) => {
+    if (e.target === modal) modal.close();
+  });
+</script>

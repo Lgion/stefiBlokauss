@@ -1,0 +1,129 @@
+---
+import { PRODUCTS } from '../scripts/store';
+
+interface Props {
+  currentRole?: string;
+}
+
+const { currentRole = 'public' } = Astro.props;
+const isVip = currentRole === 'vip' || currentRole === 'super admin';
+---
+
+<section class="c-showcase" id="editions">
+  <div class="l-container">
+    <div class="c-showcase__header">
+      <span class="c-showcase__eyebrow">La Collection 2026</span>
+      <h2 class="c-showcase__title">Les Éditions HIGH YA !</h2>
+      <p class="c-showcase__subtitle">
+        Chaque paquet est un chef-d’œuvre d'ingénierie streetwear. Sélectionnez votre signature pour en explorer les secrets en modale 3D.
+      </p>
+    </div>
+
+    <div class="c-showcase__grid">
+      {PRODUCTS.map(product => {
+        const vipPrice = Math.round(product.priceXOF * 0.8);
+        return (
+          <article class={`c-product-card ${product.id === 'bronze' ? 'c-product-card--featured' : ''} ${product.isVipExclusive ? 'c-product-card--vip-only' : ''}`}>
+            <div class="c-product-card__media">
+              <span class={`c-badge c-badge--${product.badgeType} c-product-card__badge-pos`}>
+                {product.badge}
+              </span>
+              <span class="c-product-card__3d-tag">3D Interactive</span>
+              <img 
+                src="/media/high-ya-hero.jpeg" 
+                alt={product.name} 
+                class="c-product-card__image"
+                loading="lazy"
+              />
+            </div>
+
+            <div class="c-product-card__body">
+              <h3 class="c-product-card__title">{product.name}</h3>
+              <p class="c-product-card__flavor">{product.subtitle}</p>
+
+              <div class="c-product-card__specs-row">
+                <span class="c-product-card__spec-tag">{product.nicotine} Nic.</span>
+                <span class="c-product-card__spec-tag">20 Cigs</span>
+                <span class="c-product-card__spec-tag">Filtre Charbon</span>
+              </div>
+
+              <div class="c-product-card__pricing">
+                <div class="c-product-card__price-wrap">
+                  <span class="c-product-card__price product-price-display" data-xof={isVip ? vipPrice : product.priceXOF}>
+                    {isVip ? `${vipPrice.toLocaleString('fr-FR')} FCFA` : `${product.priceXOF.toLocaleString('fr-FR')} FCFA`}
+                  </span>
+                  {isVip ? (
+                    <span class="c-product-card__vip-price">
+                      Prix VIP Club (-20%)
+                    </span>
+                  ) : (
+                    <span class="c-product-card__vip-price">
+                      VIP: {vipPrice.toLocaleString('fr-FR')} FCFA
+                    </span>
+                  )}
+                </div>
+              </div>
+
+              <div class="c-product-card__actions">
+                <button 
+                  class="c-product-card__btn-details open-product-modal-btn" 
+                  data-product-id={product.id}
+                >
+                  Voir en Modale
+                </button>
+
+                <button 
+                  class="c-product-card__btn-add quick-add-to-cart-btn" 
+                  data-product-id={product.id}
+                  title="Ajouter au panier"
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="12" y1="5" x2="12" y2="19"/>
+                    <line x1="5" y1="12" x2="19" y2="12"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </article>
+        );
+      })}
+    </div>
+  </div>
+</section>
+
+<script>
+  import { addToCart } from '../scripts/store';
+  import { formatPrice } from '../scripts/currency';
+
+  // Open Product Modal
+  document.querySelectorAll('.open-product-modal-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const productId = btn.getAttribute('data-product-id');
+      if (productId) {
+        window.dispatchEvent(new CustomEvent('hy:open-product-modal', { detail: { productId } }));
+      }
+    });
+  });
+
+  // Quick Add to Cart
+  document.querySelectorAll('.quick-add-to-cart-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const productId = btn.getAttribute('data-product-id');
+      if (productId) {
+        addToCart(productId, 'pack', 1);
+        btn.classList.add('c-product-card__btn-add--added');
+        setTimeout(() => btn.classList.remove('c-product-card__btn-add--added'), 600);
+      }
+    });
+  });
+
+  // Update prices on currency change
+  window.addEventListener('hy:currency-changed', () => {
+    document.querySelectorAll('.product-price-display').forEach(el => {
+      const xof = parseInt(el.getAttribute('data-xof') || '0', 10);
+      if (xof > 0) {
+        el.textContent = formatPrice(xof);
+      }
+    });
+  });
+</script>

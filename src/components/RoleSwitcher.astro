@@ -1,0 +1,43 @@
+---
+interface Props {
+  currentRole?: string;
+}
+
+const { currentRole = 'public' } = Astro.props;
+---
+
+<div class="c-role-switcher" id="demo-role-switcher" title="Bascule de rôle pour test & démonstration">
+  <span class="c-role-switcher__label">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline-block; vertical-align: middle; margin-right: 2px;">
+      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+      <circle cx="12" cy="7" r="4"/>
+    </svg>
+    Rôle :
+  </span>
+
+  <select class="c-role-switcher__select" id="demo-role-select">
+    <option value="public" selected={currentRole === 'public'}>Public (Défaut)</option>
+    <option value="vip" selected={currentRole === 'vip'}>VIP (-20%)</option>
+    <option value="vendeurs" selected={currentRole === 'vendeurs'}>Vendeur</option>
+    <option value="super admin" selected={currentRole === 'super admin'}>Super Admin</option>
+  </select>
+
+  { (currentRole === 'super admin' || currentRole === 'vendeurs') && (
+    <a href="/admin" style="font-size: 0.7rem; font-weight: 800; color: #ff5277; text-transform: uppercase; margin-left: 4px; text-decoration: underline;">
+      Admin →
+    </a>
+  )}
+</div>
+
+<script>
+  const select = document.getElementById('demo-role-select') as HTMLSelectElement | null;
+  select?.addEventListener('change', () => {
+    const newRole = select.value;
+    // Set cookie for 7 days
+    document.cookie = `hy_user_role=${newRole}; path=/; max-age=604800; SameSite=Lax`;
+    if (newRole === 'super admin' || newRole === 'vendeurs') {
+      document.cookie = `hy_admin_bypass=active; path=/; max-age=3600; SameSite=Lax`;
+    }
+    window.location.reload();
+  });
+</script>

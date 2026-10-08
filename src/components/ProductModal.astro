@@ -1,0 +1,226 @@
+---
+import { PRODUCTS } from '../scripts/store';
+---
+
+<dialog class="c-product-modal" id="product-detail-modal">
+  <div class="c-product-modal__dialog">
+    <button class="c-product-modal__close" id="close-product-modal-btn" aria-label="Fermer la modale">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+
+    <!-- Visual Left Column -->
+    <div class="c-product-modal__visual">
+      <img 
+        src="/media/high-ya-hero.jpeg" 
+        alt="HIGH YA ! Pack" 
+        class="c-product-modal__image" 
+        id="modal-product-img"
+      />
+      <button class="c-product-modal__view-3d-btn" id="modal-focus-3d-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+          <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+          <line x1="12" y1="22.08" x2="12" y2="12"/>
+        </svg>
+        <span>Observer dans le configurateur 3D</span>
+      </button>
+    </div>
+
+    <!-- Product Details Content -->
+    <div class="c-product-modal__content">
+      <div class="c-product-modal__header">
+        <span class="c-badge c-badge--wave" id="modal-product-badge">Édition Spéciale</span>
+        <h2 class="c-product-modal__title" id="modal-product-name">HIGH YA ! Sauvage Bronze</h2>
+        <span class="c-product-modal__slogan" id="modal-product-slogan">ÉNERGIE SAUVAGE</span>
+      </div>
+
+      <p class="c-product-modal__description" id="modal-product-desc">
+        Une intensité brute née des terroirs sauvages. Flanc en carbone strié et dorure à chaud bronze. Un tirage riche aux arômes corsés et boisés.
+      </p>
+
+      <!-- Flavor Notes Tags -->
+      <div class="c-product-modal__format">
+        <span class="c-product-modal__format-label">Profil Aromatique & Terpènes</span>
+        <div class="c-product-card__specs-row" id="modal-flavor-tags">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+
+      <!-- Technical Specs -->
+      <div class="c-product-modal__specs-grid">
+        <div class="c-product-modal__spec-item">
+          <span class="c-product-modal__spec-item-label">Taux Nicotine</span>
+          <span class="c-product-modal__spec-item-val" id="modal-spec-nicotine">0.8 mg</span>
+        </div>
+        <div class="c-product-modal__spec-item">
+          <span class="c-product-modal__spec-item-label">Type de Filtre</span>
+          <span class="c-product-modal__spec-item-val" id="modal-spec-filter">Triple Charbon Actif</span>
+        </div>
+        <div class="c-product-modal__spec-item">
+          <span class="c-product-modal__spec-item-label">Sélection Tabac</span>
+          <span class="c-product-modal__spec-item-val" id="modal-spec-origin">Grand Cru Bio</span>
+        </div>
+        <div class="c-product-modal__spec-item">
+          <span class="c-product-modal__spec-item-label">Normes & Sécurité</span>
+          <span class="c-product-modal__spec-item-val">Scellé Holographique</span>
+        </div>
+      </div>
+
+      <!-- Format Selection: Single Pack (20 cigs) vs Carton (10 packs = 200 cigs) -->
+      <div class="c-product-modal__format">
+        <span class="c-product-modal__format-label">Conditionnement</span>
+        <div class="c-product-modal__format-options">
+          <button class="c-product-modal__format-btn c-product-modal__format-btn--active" id="modal-format-pack" data-format="pack">
+            <span class="c-product-modal__format-btn-title">Paquet Unité</span>
+            <span class="c-product-modal__format-btn-sub">20 cigarettes</span>
+          </button>
+          <button class="c-product-modal__format-btn" id="modal-format-carton" data-format="carton">
+            <span class="c-product-modal__format-btn-title">Cartouche (x10)</span>
+            <span class="c-product-modal__format-btn-sub">200 cigs • Économie 10%</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Footer / Price / CTAs -->
+      <div class="c-product-modal__footer">
+        <div class="c-product-modal__price-row">
+          <div>
+            <span class="c-product-modal__total-price" id="modal-display-price">3 500 FCFA</span>
+          </div>
+          <span class="c-product-modal__vip-callout">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </svg>
+            VIP: -20% au paiement
+          </span>
+        </div>
+
+        <div class="c-product-modal__cta-group">
+          <button class="c-product-modal__btn-cart" id="modal-add-to-cart-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+              <line x1="3" y1="6" x2="21" y2="6"/>
+              <path d="M16 10a4 4 0 0 1-8 0"/>
+            </svg>
+            <span>Ajouter au Panier</span>
+          </button>
+
+          <button class="c-product-modal__btn-buy" id="modal-direct-buy-btn">
+            <span>Acheter via Wave</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="9 18 15 12 9 6"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<script>
+  import { PRODUCTS, addToCart, type ProductVariant } from '../scripts/store';
+  import { formatPrice } from '../scripts/currency';
+
+  const modal = document.getElementById('product-detail-modal') as HTMLDialogElement | null;
+  const closeBtn = document.getElementById('close-product-modal-btn');
+  let currentProduct: ProductVariant = PRODUCTS[0];
+  let selectedFormat: 'pack' | 'carton' = 'pack';
+
+  function populateModal(product: ProductVariant) {
+    currentProduct = product;
+    selectedFormat = 'pack';
+
+    const nameEl = document.getElementById('modal-product-name');
+    const sloganEl = document.getElementById('modal-product-slogan');
+    const descEl = document.getElementById('modal-product-desc');
+    const badgeEl = document.getElementById('modal-product-badge');
+    const nicEl = document.getElementById('modal-spec-nicotine');
+    const filterEl = document.getElementById('modal-spec-filter');
+    const originEl = document.getElementById('modal-spec-origin');
+    const flavorsEl = document.getElementById('modal-flavor-tags');
+
+    if (nameEl) nameEl.textContent = product.name;
+    if (sloganEl) sloganEl.textContent = product.slogan;
+    if (descEl) descEl.textContent = product.description;
+    if (badgeEl) badgeEl.textContent = product.badge;
+    if (nicEl) nicEl.textContent = product.nicotine;
+    if (filterEl) filterEl.textContent = product.filterType;
+    if (originEl) originEl.textContent = product.blendOrigin;
+
+    if (flavorsEl) {
+      flavorsEl.innerHTML = product.flavorNotes
+        .map(note => `<span class="c-product-card__spec-tag">${note}</span>`)
+        .join('');
+    }
+
+    updateFormatUI();
+    updatePriceUI();
+  }
+
+  function updateFormatUI() {
+    const packBtn = document.getElementById('modal-format-pack');
+    const cartonBtn = document.getElementById('modal-format-carton');
+    packBtn?.classList.toggle('c-product-modal__format-btn--active', selectedFormat === 'pack');
+    cartonBtn?.classList.toggle('c-product-modal__format-btn--active', selectedFormat === 'carton');
+  }
+
+  function updatePriceUI() {
+    const priceEl = document.getElementById('modal-display-price');
+    const priceXOF = selectedFormat === 'carton' ? currentProduct.cartonPriceXOF : currentProduct.priceXOF;
+    if (priceEl) priceEl.textContent = formatPrice(priceXOF);
+  }
+
+  // Format selector clicks
+  document.getElementById('modal-format-pack')?.addEventListener('click', () => {
+    selectedFormat = 'pack';
+    updateFormatUI();
+    updatePriceUI();
+  });
+
+  document.getElementById('modal-format-carton')?.addEventListener('click', () => {
+    selectedFormat = 'carton';
+    updateFormatUI();
+    updatePriceUI();
+  });
+
+  // Add to cart
+  document.getElementById('modal-add-to-cart-btn')?.addEventListener('click', () => {
+    addToCart(currentProduct.id, selectedFormat, 1);
+    modal?.close();
+    window.dispatchEvent(new CustomEvent('hy:open-cart'));
+  });
+
+  // Direct buy via Wave
+  document.getElementById('modal-direct-buy-btn')?.addEventListener('click', () => {
+    addToCart(currentProduct.id, selectedFormat, 1);
+    modal?.close();
+    window.dispatchEvent(new CustomEvent('hy:open-checkout'));
+  });
+
+  // Focus in 3D viewer
+  document.getElementById('modal-focus-3d-btn')?.addEventListener('click', () => {
+    modal?.close();
+    const viewerEl = document.getElementById('viewer');
+    viewerEl?.scrollIntoView({ behavior: 'smooth' });
+    const themeBtn = document.querySelector(`.c-viewer3d__variant-btn[data-theme="${currentProduct.id}"]`) as HTMLButtonElement;
+    themeBtn?.click();
+  });
+
+  // Listen for open events
+  window.addEventListener('hy:open-product-modal', (e: any) => {
+    const productId = e.detail?.productId;
+    const prod = PRODUCTS.find(p => p.id === productId);
+    if (prod && modal) {
+      populateModal(prod);
+      modal.showModal();
+    }
+  });
+
+  closeBtn?.addEventListener('click', () => modal?.close());
+  modal?.addEventListener('click', (e) => {
+    if (e.target === modal) modal.close();
+  });
+</script>

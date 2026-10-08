@@ -1,0 +1,83 @@
+// ==========================================================================
+// HIGH YA ! — Variables & Design Tokens (Streetwear Avant-Garde)
+// ==========================================================================
+
+:root {
+  // Brand Core Colors
+  --hy-color-black: #050608;
+  --hy-color-dark: #0a0c10;
+  --hy-color-surface: #12151c;
+  --hy-color-surface-hover: #1a1e28;
+  --hy-color-border: rgba(255, 255, 255, 0.09);
+  --hy-color-border-bright: rgba(255, 255, 255, 0.22);
+  --hy-color-white: #ffffff;
+  --hy-color-muted: #8b92a4;
+  --hy-color-light: #e6ebf5;
+
+  // Streetwear Avant-Garde Accents
+  --hy-color-gold: #d89f38;
+  --hy-color-gold-bright: #ffc857;
+  --hy-color-gold-glow: rgba(216, 159, 56, 0.4);
+
+  --hy-color-acid: #00ff87;
+  --hy-color-acid-glow: rgba(0, 255, 135, 0.35);
+
+  --hy-color-cyan: #00f0ff;
+  --hy-color-cyan-glow: rgba(0, 240, 255, 0.35);
+
+  --hy-color-uv: #a855f7;
+  --hy-color-uv-glow: rgba(168, 85, 247, 0.35);
+
+  --hy-color-crimson: #ff1744;
+  --hy-color-ember: #ff5722;
+
+  // Wave Payment Official Blue
+  --hy-color-wave: #1ba0e2;
+  --hy-color-wave-dark: #0e78b0;
+  --hy-color-wave-glow: rgba(27, 160, 226, 0.4);
+
+  // VIP Club Luxury Emerald & Gold
+  --hy-color-vip: #ffd700;
+  --hy-color-vip-badge: #1b281d;
+
+  // Typography
+  --hy-font-primary: 'Cabinet Grotesk', 'Syne', system-ui, -apple-system, sans-serif;
+  --hy-font-display: 'Impact', 'Syne', system-ui, sans-serif;
+  --hy-font-mono: 'Space Mono', 'JetBrains Mono', monospace;
+
+  // Spacing Scale
+  --hy-space-2xs: 0.25rem;
+  --hy-space-xs: 0.5rem;
+  --hy-space-sm: 0.75rem;
+  --hy-space-md: 1rem;
+  --hy-space-lg: 1.5rem;
+  --hy-space-xl: 2rem;
+  --hy-space-2xl: 3rem;
+  --hy-space-3xl: 5rem;
+
+  // Radii
+  --hy-radius-sm: 6px;
+  --hy-radius-md: 12px;
+  --hy-radius-lg: 20px;
+  --hy-radius-pill: 9999px;
+
+  // Shadows & Glass
+  --hy-glass-bg: rgba(14, 17, 23, 0.78);
+  --hy-glass-blur: blur(20px);
+  --hy-glass-border: 1px solid rgba(255, 255, 255, 0.1);
+  --hy-shadow-card: 0 20px 50px rgba(0, 0, 0, 0.6);
+  --hy-shadow-glow: 0 0 40px rgba(216, 159, 56, 0.25);
+
+  // Transitions
+  --hy-transition-fast: 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  --hy-transition-normal: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  --hy-transition-slow: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+
+  // Z-Indices
+  --hy-z-base: 1;
+  --hy-z-header: 100;
+  --hy-z-dropdown: 200;
+  --hy-z-floating: 500;
+  --hy-z-modal: 1000;
+  --hy-z-toast: 2000;
+}

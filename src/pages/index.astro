@@ -1,0 +1,17 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero3DViewer from '../components/Hero3DViewer.astro';
+import ProductShowcase from '../components/ProductShowcase.astro';
+import BrandStory from '../components/BrandStory.astro';
+
+const currentRole = Astro.locals.currentRole || 'public';
+---
+
+<Layout 
+  title="HIGH YA ! — Énergie Sauvage | Cigarettes Streetwear Avant-Garde"
+  description="Plateforme officielle HIGH YA !. Configurateur 3D interactif, filtres haute précision, commande directe Wave Mobile Money."
+>
+  <Hero3DViewer />
+  <ProductShowcase currentRole={currentRole} />
+  <BrandStory />
+</Layout>

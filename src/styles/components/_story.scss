@@ -1,0 +1,140 @@
+// ==========================================================================
+// HIGH YA ! — Component: Brand Story & Video Showcase (BEM)
+// ==========================================================================
+
+@use "../variables" as *;
+@use "../mixins" as *;
+
+
+.c-story {
+  position: relative;
+  padding: var(--hy-space-3xl) 0;
+  overflow: hidden;
+
+  &__container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--hy-space-2xl);
+    align-items: center;
+
+    @include desktop {
+      grid-template-columns: 1.1fr 1fr;
+    }
+  }
+
+  &__video-wrapper {
+    position: relative;
+    border-radius: var(--hy-radius-lg);
+    overflow: hidden;
+    @include glass-panel(rgba(10, 12, 18, 0.8), blur(20px), 1px solid rgba(255, 255, 255, 0.15));
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
+    aspect-ratio: 9 / 16;
+    max-height: 580px;
+    margin: 0 auto;
+  }
+
+  &__video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  &__video-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: var(--hy-space-lg);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, transparent 100%);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__video-title {
+    font-size: 1.1rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #ffffff;
+    @include flame-text;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--hy-space-md);
+  }
+
+  &__badge {
+    align-self: flex-start;
+  }
+
+  &__title {
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    color: #ffffff;
+
+    &-flame {
+      @include flame-text;
+      display: block;
+    }
+  }
+
+  &__text {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--hy-color-muted);
+
+    strong {
+      color: #ffffff;
+    }
+  }
+
+  &__features-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--hy-space-md);
+    margin-top: var(--hy-space-sm);
+
+    @include tablet {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  &__feature-card {
+    padding: var(--hy-space-md);
+    border-radius: var(--hy-radius-md);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--hy-color-border);
+    display: flex;
+    gap: var(--hy-space-sm);
+
+    &-icon {
+      color: var(--hy-color-gold);
+      flex-shrink: 0;
+    }
+
+    &-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    &-title {
+      font-size: 0.9rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: #ffffff;
+    }
+
+    &-desc {
+      font-size: 0.8rem;
+      color: var(--hy-color-muted);
+      line-height: 1.4;
+    }
+  }
+}
